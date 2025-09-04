@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
-import "./globals.css";
 import { cn } from "@/lib/utils";
+import "./globals.css";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Providers from "@/components/Providers";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "quiznote",
-  description: "quiz me",
+  title: "QuizNote",
+  description: "Challenge Yourself!!",
 };
 
 export default function RootLayout({
@@ -18,10 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
       <body className={cn(inter.className, "antialiased min-h-screen pt-16")}>
-        <Navbar />
-        {children}
+        <Providers>
+          <Navbar />
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
