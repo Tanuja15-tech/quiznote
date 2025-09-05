@@ -20,7 +20,7 @@ export default async function Home() {
         <CardHeader>
           <CardTitle>Welcome to QuizNote 🔥!</CardTitle>
           <CardDescription>
-            Quizzzy is a platform for creating quizzes using AI!. Get started by
+            QuizNote is a platform for creating quizzes using AI!. Get started by
             loggin in below!
           </CardDescription>
         </CardHeader>
