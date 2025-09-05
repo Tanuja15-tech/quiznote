@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/nextauth";
 import { quizCreationSchema } from "@/schemas/forms/quiz";
@@ -5,7 +6,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import axios from "axios";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, _res: Response) {
   try {
     const session = await getAuthSession();
     if (!session?.user) {
@@ -60,7 +61,7 @@ export async function POST(req: Request, res: Response) {
       };
 
       const manyData = data.questions.map((question: mcqQuestion) => {
-        // mix up the options lol
+        // mix up the options
         const options = [
           question.option1,
           question.option2,

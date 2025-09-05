@@ -7,6 +7,7 @@ import { ZodError } from "zod";
 export const runtime = "nodejs";
 export const maxDuration = 500;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function POST(req: Request, res: Response) {
   try {
     const session = await getAuthSession();
@@ -20,6 +21,7 @@ export async function POST(req: Request, res: Response) {
     }
     const body = await req.json();
     const { amount, topic, type } = getQuestionsSchema.parse(body);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let questions: any;
     if (type === "open_ended") {
       questions = await strict_output(
