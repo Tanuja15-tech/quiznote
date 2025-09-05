@@ -2,34 +2,35 @@
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import React from "react";
-import D3WordCloud from "react-d3-cloud";
+import Wordcloud from "react-wordcloud";
 
 type Props = {
   formattedTopics: { text: string; value: number }[];
 };
 
-const fontSizeMapper = (word: { value: number }) =>
-  Math.log2(word.value) * 5 + 16;
-
 const WordCloud = ({ formattedTopics }: Props) => {
   const theme = useTheme();
   const router = useRouter();
-  return (
-    <>
-      <D3WordCloud
-        data={formattedTopics}
-        height={550}
-        font="Times"
-        fontSize={fontSizeMapper}
-        rotate={0}
-        padding={10}
-        fill={theme.theme === "dark" ? "white" : "black"}
-        onWordClick={(e, d) => {
-          router.push("/quiz?topic=" + d.text);
-        }}
-      />
-    </>
-  );
+  if (!formattedTopics || formattedTopics.length === 0) {
+    return <p>No topics available</p>;
+  }
+
+
+  const options = {
+    rotations: 1,
+    fontFamily: "Times",
+    fontSizes: [16, 48] as [number, number], 
+    padding: 10,
+    colors: theme.theme === "dark" ? ["#ffffff"] : ["#000000"],
+  };
+
+  const callbacks = {
+    onWordClick: (word: { text: string }) => {
+      router.push("/quiz?topic=" + word.text);
+    },
+  };
+
+  return <Wordcloud words={formattedTopics} options={options} callbacks={callbacks} />;
 };
 
 export default WordCloud;
