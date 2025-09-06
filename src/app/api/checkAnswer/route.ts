@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 import { distance } from "fastest-levenshtein";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function POST(req: Request, res: Response) {
   try {
     const body = await req.json();

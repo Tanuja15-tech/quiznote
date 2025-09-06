@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { prisma } from "@/lib/db";
 import { endGameSchema } from "@/schemas/questions";
 import { NextResponse } from "next/server";
